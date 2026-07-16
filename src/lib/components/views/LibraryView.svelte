@@ -204,7 +204,13 @@
 	</div>
 
 	{#if browsingLoading}
-		<div class="loading">加载中...</div>
+		<div class="loading">
+			<div class="loading-dots">
+				<span class="dot"></span>
+				<span class="dot"></span>
+				<span class="dot"></span>
+			</div>
+		</div>
 
 	{:else if mode === 'tracks' && library.trackCount === 0}
 		<div class="empty-state">
@@ -373,7 +379,12 @@
 	.browse-card:hover { background: var(--bg-hover); }
 	.card-icon { color: var(--fg-quaternary); flex-shrink: 0; }
 	.card-label { flex: 1; font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-	.loading { display: flex; align-items: center; justify-content: center; flex: 1; color: var(--fg-tertiary); font-size: 13px; }
+	.loading { display: flex; align-items: center; justify-content: center; flex: 1; }
+	.loading-dots { display: flex; gap: 6px; }
+	.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); animation: loadPulse 1.2s ease-in-out infinite; }
+	.dot:nth-child(2) { animation-delay: 0.2s; }
+	.dot:nth-child(3) { animation-delay: 0.4s; }
+	@keyframes loadPulse { 0%, 80% { transform: scale(0.5); opacity: 0.3; } 40% { transform: scale(1); opacity: 1; } }
 	.empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); padding: 60px 40px; }
 	.empty-icon { color: var(--fg-quaternary); }
 	.empty-title { font-size: 16px; font-weight: 500; color: var(--fg-secondary); }
